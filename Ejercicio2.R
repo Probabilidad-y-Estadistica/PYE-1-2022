@@ -79,6 +79,7 @@ comparVD = varD - varT
 #teorica de la variable simulada. Hacer otro grafico similar, pero para n = 10ˆ5
 
 ## dexp: La función en R para calcular la función de densidad de probabilidad exponencial de λ https://r-coder.com/distribucion-exponencial-r/
+
 # Con n=100 (muestra 10^2)
 muestra102 = rexp(n = 100, rate = lambda)
 hist(muestra102, prob = TRUE, main = "Histograma de densidad", # Densidad

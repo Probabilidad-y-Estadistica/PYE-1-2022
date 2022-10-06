@@ -1,17 +1,16 @@
 # EJ 1
-# distribución binomial (30 ,  0.15)
+# distribución poisson (lambda = 8 ) 
 # n = 10 ^ (2 al 5)
-# rbinom(
+# rpois(
 #       n,     Numero de observaciones aleatorias a ser generadas
-#       size,  Numero de ensayos (> = 0)
-#       prob)  La probabilidad de éxito en cada ensayo
+#       lambda, vector de medias no negativas )
 
 # Generamos 4 constantes "a", "b", "c" y "d" aplicando la distribución de poisson
 # para los tamaños de muestra 10^2, 10^3, 10^4 y 10^5 respectivamente
-a = rpois(10^2,lambda = 3.5)
-b = rpois(10^3,lambda = 3.5)
-c = rpois(10^4,lambda = 3.5)
-d = rpois(10^5,lambda = 3.5)
+a = rpois(10^2,lambda = 8)
+b = rpois(10^3,lambda = 8)
+c = rpois(10^4,lambda = 8)
+d = rpois(10^5,lambda = 8)
 
 # Con boxplot generamos el gráfico de cajas agregado color para distiguir 
 # cada gráfico y borramos el eje "y" para agregar uno más exacto
@@ -27,16 +26,14 @@ boxplot(#values ~ group,
   ylab = "Valor variable aleatoria",
   yaxt='n')
 
-#Mostramos los datos particulares de cada una de las muestras obtenidas.
+# Agregamos eje "y" mas exacto
+axis(2, at=seq(0, 30, 1),las=2)
+
+#Mostramos los datos particulares de cada una de los boxplot obtenidos.
 boxplot.stats(a)
 boxplot.stats(b)
 boxplot.stats(c)
 boxplot.stats(d)
-
-
-# Agregamos eje "y" mas exacto
-axis(2, at=seq(0, 30, 1),las=2)
-
 
 # Utilizamos "mean" para calcular la esperanza empírica de cada muestra
 # y guardamos cada resultado para su posterior comparación
@@ -46,7 +43,7 @@ espC = mean(c)
 espD = mean(d)
 
 # Por el teórico se sabe que lambda coincide con la esperanza teórica
-espT = 3.5
+espT = 8
 
 # Se compara el valor teórico contra el valor empirico obtenido en cada caso
 comparEA = espA - espT
@@ -63,7 +60,7 @@ varC = var(c)
 varD = var(d)
 
 # Por el teórico se sabe que lambda coincide con el valor de la varianza
-varT = 3.5
+varT = 8
 
 # Se compara el valor teorico de la varianza contra el valor empirico obtenido en cada caso
 comparVA = varA - varT
@@ -81,29 +78,29 @@ distD = ecdf(d)
 # obtener la funcion de distribucion acumulada teorica y poder graficarla
 # utilizando "plot". genrando los escalones caracteristicos. Nos aseguramos
 # de eliminar las verticales y de agregar las etiquetas correspondientes
-plot(stepfun(c(1:10),ppois(c(0,1:10), lambda = 3.5)), 
+plot(stepfun(c(1:10),ppois(c(0,1:10), lambda = 8)), 
      main = "Función de distribución acumulada para 10^2", 
      xlab = "k",
      ylab = "F(k)",
-     col="red")
+     col="blue")
 
 
 # Sobre el grafico anterior graficamos nuestra desitribucion empirica 
 # con tamaño de muestera 10^2 que obtuvimos previmante con un color
 # diferente para distinguirla de la distribucion teorica
-lines(distA, col="springgreen4")
+lines(distA, col="orange")
 
 # Agregamos una leyenda para hacer mas clara la identificacion
 # de los graficos
 legend("bottomright", 
        legend = c("Distribución Acumulada Empírica - 10^2",
                   "Distribución Acumulada Teórica"),
-       lty = 1, col = c("red","springgreen4"), lwd = 2, box.lty =1)
+       lty = 1, col = c("blue","orange"), lwd = 2, box.lty =1)
 
 
 # Analogamente al grafico anterior graficamos la distribucion acumulada teorica
 
-plot(stepfun(c(1:10),ppois(c(0,1:10), lambda = 3.5)), 
+plot(stepfun(c(1:10),ppois(c(0,1:10), lambda = 8)), 
      main = "Función de distribución acumulada para 10^5", 
      xlab = "k",
      ylab = "F(k)",
@@ -116,17 +113,18 @@ legend("bottomright",
 
 
 
+#---------------------------------------------------------------------------------------
 
 # EJ 2
-# DistribuciÃ³n Normal(-4,16)
+# Distribucion Exponencial(3.5)
 # n = 10 ^ (2 al 5)
 
-# Generamos 4 constantes "a", "b", "c" y "d" aplicando la distribuciÃ³n normal
+# Generamos 4 constantes "a", "b", "c" y "d" aplicando la distribucion normal
 # para los tamaÃ±os de muestra 10^2, 10^3, 10^4 y 10^5 respectivamente
-a = rnorm(10^2,-4, sqrt(16))
-b = rnorm(10^3,-4, sqrt(16))
-c = rnorm(10^4,-4, sqrt(16))
-d = rnorm(10^5,-4, sqrt(16))
+a = rexp(10^2, rate = 3.5)
+b = rexp(10^3, rate = 3.5)
+c = rexp(10^4, rate = 3.5)
+d = rexp(10^5, rate = 3.5)
 
 # Para graficar las 4 mustras en un mismo grÃ¡fico de cajas generamos un array
 # con los resultados
@@ -232,12 +230,14 @@ legend("topleft",
                   "FunciÃ³n de densidad"),
        lty = 1, col = c("grey","blue"), lwd =1, box.lty =1)
 
-# EJ 3
-# Distribución Normal(-4,16)
-# PT 1) n = 10 ^ 3
+#------------------------------------------------------------------------------------
 
+# EJ 3
+# Distribución Exponencial(3.5)
+
+# PT 1) n = 10 ^ 3
 # Generamos una constante con valores aleatorios para la variable con distribución normal
-a = rnorm(10^3,-4, sqrt(16)) 
+a = rexp(10^3,-4, sqrt(16)) 
 # Calculamos la media empírica de los valoreas aleatorias de a
 muEmp = mean(a) 
 # Guradamos la media teórica 

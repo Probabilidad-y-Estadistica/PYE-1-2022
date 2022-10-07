@@ -187,10 +187,10 @@ outliersReplace <- function(data, lowLimit, highLimit){
   data     #devolvemos el dato       
 }
 
-a2 = outliersReplace(a, -0.1 , 1.1)
-b2 = outliersReplace(b, -0.1 , 1.1)
-c2 = outliersReplace(c, -0.1 , 1.1)
-d2 = outliersReplace(d, -0.1 , 1.1)
+a2 = outliersReplace(a, 0 , 1.1)
+b2 = outliersReplace(b, 0 , 1.1)
+c2 = outliersReplace(c, 0 , 1.1)
+d2 = outliersReplace(d, 0 , 1.1)
 
 boxplot(#values ~ group,
   #data,

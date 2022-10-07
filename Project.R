@@ -141,30 +141,21 @@ for(i in 1:500){
 }
 
 # Presentamos en un histograma los valores obtenidos en el loop
-s = seq(-4, 4, 0.1)
-hist(promEst,
-     main="Promedio estandarizados y distribuciÃ³n normal estandar",
-     breaks = 50,
-     xaxt="n",
-     ylab="Densidad",
-     xlab="x",
-     freq=FALSE)
 
-# Sobre el histograma graficamos la densidad de la distribución normal estandard
-lines(s, 
-      dnorm(s, mean = 0, sd = 1),
-      lty = 1, 
-      lwd = 2)
-polygon(s, 
-        dnorm(s, mean = 0, sd = 1), 
-        col = rgb(1, 0, 0, alpha = 0.5))
+h <- hist(promEst, breaks = 50, density = 10,
+          col = "lightgreen", ylab="Densidad", xlab = "x", main = "Promedio estandarizados y distribución normal estandar") 
+xfit <- seq(min(promEst), max(promEst), length = 40) 
+yfit <- dnorm(xfit, mean = mean(promEst), sd = sd(promEst)) 
+yfit <- yfit * diff(h$mids[1:2]) * length(promEst) 
+
+lines(xfit, yfit, col = "red", lwd = 2)
 
 # Por último agregamos una leyenda para visualizar claramente los resultados  y cambiamos la escala del eje
 axis(1, at=s,las=1)
 legend("topleft", 
        legend = c("Promedio estandarizado",
-                  "DistribuciÃ³n normal estandar"),
-       lty = 1, col = c("grey","red"), lwd =1, box.lty =1)
+                  "Distribución normal estandar"),
+       lty = 1, col = c("lightgreen","red"), lwd =1, box.lty =1)
 
 
 #------------------------------------------------------------------------------------

@@ -179,6 +179,34 @@ b = rexp(10^3, lambda)
 c = rexp(10^4, lambda)
 d = rexp(10^5, lambda)
 
+# PARTE OPCIONAL - QUITAR VALORES DEMASIADOS ATIPICOS
+# ---------------------------------------------------------------
+outliersReplace <- function(data, lowLimit, highLimit){
+  data[data < lowLimit] <- mean(data)
+  data[data > highLimit] <- median(data)
+  data     #devolvemos el dato       
+}
+
+a2 = outliersReplace(a, -0.1 , 1.1)
+b2 = outliersReplace(b, -0.1 , 1.1)
+c2 = outliersReplace(c, -0.1 , 1.1)
+d2 = outliersReplace(d, -0.1 , 1.1)
+
+boxplot(#values ~ group,
+  #data,
+  a2,b2,c2,d2,
+  col = c("darkseagreen1",
+          "darkseagreen2", 
+          "darkseagreen3", 
+          "darkseagreen4"),
+  main = "Distribución Exponencial",
+  xlab = "Muestras",
+  ylab = "Valor variable aleatoria",
+  yaxt='n')
+
+axis(2, at=seq(0, 1.1, 0.02),las=2)
+# ---------------------------------------------------------------
+
 # Con boxplot generamos el gráfico de cajas agregado color para distiguir 
 # cada gráfico y borramos el eje "y" para agregar uno más exacto
 boxplot(

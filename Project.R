@@ -118,14 +118,15 @@ legend("bottomright",
 # Distribución Exponencial(3.5)
 
 # PT 1) n = 10 ^ 3
-# Generamos una constante con valores aleatorios para la variable con distribución normal
-a = rexp(10^3,-4, sqrt(16)) 
+# Generamos una constante con valores aleatorios para la variable con distribución exponencial
+a = rexp(10^3, 3.5) 
 # Calculamos la media empírica de los valoreas aleatorias de a
 muEmp = mean(a) 
-# Guradamos la media teórica 
-muTeo = -4
+
+# Guardamos la media teórica 
+muTeo = 1/3.5
 # Guardamos desviación estandar teórica
-desvTeo = sqrt(16)
+desvTeo = 1/3.5
 # Valor estandarizado de mediana empírica
 medEsta = sqrt(1000) * ((muEmp - muTeo)/desvTeo)
 

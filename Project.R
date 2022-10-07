@@ -143,14 +143,22 @@ for(i in 1:500){
 # Presentamos en un histograma los valores obtenidos en el loop
 
 h <- hist(promEst, breaks = 50, density = 10,
-          col = "lightgreen", ylab="Densidad", xlab = "x", main = "Promedio estandarizados y distribución normal estandar") 
+          col = "lightgreen", 
+          ylab="Densidad", 
+          xlab = "x", 
+          main = "Promedio estandarizados y distribución normal estandar") 
 xfit <- seq(min(promEst), max(promEst), length = 40) 
 yfit <- dnorm(xfit, mean = mean(promEst), sd = sd(promEst)) 
 yfit <- yfit * diff(h$mids[1:2]) * length(promEst) 
 
 lines(xfit, yfit, col = "red", lwd = 2)
+# Pinta area debajo del gráfico
+polygon(xfit, 
+       yfit, 
+        col = rgb(1, 0, 0, alpha = 0.5))
 
-# Por último agregamos una leyenda para visualizar claramente los resultados  y cambiamos la escala del eje
+# Por último agregamos una leyenda para visualizar claramente los resultados  
+# y cambiamos la escala del eje
 axis(1, at=s,las=1)
 legend("topleft", 
        legend = c("Promedio estandarizado",

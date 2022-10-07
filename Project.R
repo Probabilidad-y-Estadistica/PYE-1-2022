@@ -114,117 +114,6 @@ legend("bottomright",
 
 
 #---------------------------------------------------------------------------------------
-
-# EJ 2
-# Distribucion Exponencial(3.5)
-# n = 10 ^ (2 al 5)
-
-# Antes de generar las distribuciones fijamos una semilla para que las salidas sean reproducibles
-set.seed(3.5)
-
-# Generamos 4 constantes "a", "b", "c" y "d" aplicando la distribucion exponencial
-# para los tamanos de muestra 10^2, 10^3, 10^4 y 10^5 respectivamente
-a = rexp(10^2, rate = 3.5)
-b = rexp(10^3, rate = 3.5)
-c = rexp(10^4, rate = 3.5)
-d = rexp(10^5, rate = 3.5)
-
-
-# Con boxplot generamos el grÃ¡fico de cajas agregado color para distiguir 
-# cada grafico y borramos el eje "y" para agregar uno mas exacto, al igual
-# que lo hicimos con la distribucion de poisson
-boxplot(#values ~ group,
-  #data,
-  a,b,c,d,
-  col = c("pink",
-          "beige", 
-          "lightblue", 
-          "lightgreen"),
-  main = "Distribución normal",
-  xlab = "Muestras",
-  ylab = "Valor variable aleatoria", 
-  yaxt='n')
-
-# Agregamos eje "y" mas exacto
-axis(2, at=seq(-20, 20, 1),las=2)
-
-# Obtenemos los stats de cada boxplot para analizar
-boxplot.stats(a)
-boxplot.stats(b)
-boxplot.stats(c)
-boxplot.stats(d)
-
-# Como estamos trabajando con la dsitribucion exponencial, sabemos que la esperanza
-# teorica se calcula como 1/lambda o 1/rate
-espT = (1/3.5)
-
-# Se utiliza "mean" para calcular la esperanza empirica
-espA = mean(a)
-espB = mean(b)
-espC = mean(c)
-espD = mean(d)
-
-# La varianza teorica se calcula como 1/lambda^2 en este caso (3.5^2)
-varT = (1/(3.5^2))
-
-# Varianza Empirica
-# Se utiliza "var" para calcular la varianza empirica
-varA = var(a)
-varB = var(b)
-varC = var(c)
-varD = var(d)
-
-# Histogramas
-# Generamos un histograma con los valores obtenidos de ralizar los experimentos aleatorios
-# Rejilla del eje X
-x <- seq(0, 8, 0.1)
-# Histograma para  muestra 10^2
-hist(a, 
-     main="Distribución Exponencial - muestra 10^2",
-     breaks = 10, 
-     xaxt="n",
-     ylab="Densidad",
-     xlab="x",
-     freq=FALSE)
-# Dibujamos una linea con la funcion de densidad
-lines(x, dexp(x, rate = 3.5), col = "blue", lty = 1, lwd = 2)
-
-# Agregamos una leyenda
-legend("topright", 
-       legend = c("Valores aleatorios",
-                  "Funcion de densidad"),
-       lty = 1, col = c("grey","blue"), lwd =1, box.lty =1)
-
-
-# Realizamos el histograma para el tamaño de muestra 10^5 analogamente al 10^2
-# Rejilla del eje X
-x <- seq(0, 8, 0.1)
-
-# Histograma para  muestra 10^5
-hist(d, 
-     main="Distribución Exponencial - muestra 10^5",
-     ylab="Densidad",
-     xlab="x",
-     breaks = 50,
-     xaxt="n", 
-     freq=FALSE)
-# Dibujamos una linea con la funcion de densidad
-lines(x, dexp(x, rate = 3.5), col = "blue", lty = 1, lwd = 2)
-
-# Agregamos una leyenda
-legend("topright", 
-       legend = c("Valores aleatorios",
-                  "Funcion de densidad"),
-       lty = 1, col = c("grey","blue"), lwd =1, box.lty =1)
-
-# Pintamos debajo de la grafica
-#polygon(x, 
-#        dexp(x, rate = 3.5), 
-#        col = rgb(0, 0, 1, alpha = 0.5))
-#axis(1, at=seq(-20, 10, 1),las=1)
-
-#------------------------------------------------------------------------------------
-
 # EJ 3
 # Distribución Exponencial(3.5)
 
@@ -275,6 +164,9 @@ legend("topleft",
        legend = c("Promedio estandarizado",
                   "DistribuciÃ³n normal estandar"),
        lty = 1, col = c("grey","red"), lwd =1, box.lty =1)
+
+
+#------------------------------------------------------------------------------------
 
 
 # Ejercicio 2

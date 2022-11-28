@@ -6,20 +6,18 @@
 
 lambda = 3.5
 
-# Generar X1, X2, .. X50 con distribución exponencial 
-muestra = rexp(50, lambda)
-
 ################################
 # Parte A
 ################################
 # Esperanza teórica para la distribución exponencial: E(X) = 1/lambda (o 1/rate)
 espX50 = 1/lambda
+print(espX50)
 
 # Varianza teórica de una distribución exponencial: Var(X) = 1/lambda^2 , en este caso (3.5^2)
 # Varianza teórica de X50
 varTeo = (1/(3.5^2))
 varX50 = varTeo / 50
-
+print(varX50)
 #################################
 # Parte B
 #################################
@@ -37,7 +35,7 @@ for(i in 1:10000){
 }
 
 # Superponer vector con simulaciones y la N(µ, σ) calculados en parte A
-hist(medias, freq = FALSE, col = "lightgreen", main = "Promedios y Distribución Normal", xlab = "Promedios empíricos",  ylab = '')
+hist(medias, freq = FALSE, breaks = 50, col = "lightgreen", main = "Promedios y Distribución Normal", xlab = "Promedios empíricos",  ylab = '')
 curve(dnorm(x, mean = espX50, sd = sqrt(varX50)), add = TRUE, col = "red", lwd = 2)
 
 ###############################
@@ -76,7 +74,7 @@ for(i in 1:10000){
 }
 
 proporcion = cantFuera/length(medias)
-
+print(proporcion)
 
 
 

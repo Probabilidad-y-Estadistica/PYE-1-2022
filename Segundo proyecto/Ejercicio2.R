@@ -51,6 +51,6 @@ for(i in 1:length(medias)){
   }
 }
 
-pValor = cantP/10000
+pValor = 1 - (cantP/10000)
 
 

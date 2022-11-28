@@ -9,12 +9,6 @@ lambda = 3.5
 # Generar X1, X2, .. X50 con distribución exponencial 
 muestra = rexp(50, lambda)
 
-# µ
-muEmp = mean(muestra) 
-
-# σ2
-varEmp = var(muestra)
-
 ################################
 # Parte A
 ################################
